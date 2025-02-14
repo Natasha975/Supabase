@@ -18,13 +18,14 @@ class MainActivity : AppCompatActivity() {
 
 
         var buton = findViewById<Button>(R.id.button)
+        var t1 = findViewById<EditText>(R.id.editTextText)
         var t2 = findViewById<EditText>(R.id.editTextText2)
         var t3 = findViewById<EditText>(R.id.editTextText3)
         var t4 = findViewById<EditText>(R.id.editTextText4)
         buton.setOnClickListener{
             var sup = SupabaseManager()
             lifecycleScope.launch {
-                sup.PostMain(t2.text.toString(),t3.text.toString(),t4.text.toString())
+                sup.PostMain(t1.text.toString().toInt(), t2.text.toString(),t3.text.toString(),t4.text.toString())
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.supabase
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 import io.github.jan.supabase.postgrest.from
+import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.serializer.JacksonSerializer
 
 class SupabaseManager{
@@ -18,8 +19,9 @@ class SupabaseManager{
         return supabaseManager.from("Per").select().decodeList<Main>()
     }
 
-    suspend fun PostMain( Name: String, Photo: String, Birthday: String){
-        supabaseManager.from("Per").insert(mapOf(
+    suspend fun PostMain(id: Int, Name: String, Photo: String, Birthday: String){
+        supabaseManager.postgrest["Per"].insert(mapOf(
+            "id" to id,
             "Name" to Name,
             "Photo" to Photo,
             "Birthday" to Birthday
